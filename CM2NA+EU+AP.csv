@@ -1,2 +1,2 @@
 IP地址,端口,回源端口,TLS,数据中心,地区,城市,TCP延迟(ms),速度(MB/s)
-152.70.102.124,8443,8443,true,HKG,Asia Pacific,Hong Kong,160,8.08
+104.25.248.91,443,443,true,HKG,Asia Pacific,Hong Kong,160,8.08
