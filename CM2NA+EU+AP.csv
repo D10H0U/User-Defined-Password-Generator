@@ -1,10 +1,7 @@
 IP地址,端口,回源端口,TLS,数据中心,地区,城市,TCP延迟(ms),速度(MB/s)
-104.26.8.205,443,443,true,US SEA 104.26.8.205,North America,Seattle,166,8.08
-104.21.238.104,443,443,true,US SEA 104.21.238.104,North America,Seattle,168,8.08
-172.67.154.57,443,443,true,US SEA 172.67.154.57,North America,Seattle,170,8.08
-104.25.243.109,443,443,true,HKG 104.25.243.109,Asia Pacific,Hong Kong,82,8.08
-104.25.250.162,443,443,true,HKG 104.25.250.162,Asia Pacific,Hong Kong,83,8.08
-104.25.248.91,443,443,true,HKG 104.25.248.91,Asia Pacific,Hong Kong,87,8.08
-104.19.229.141,443,443,true,FRA 104.19.229.141,Europe,Frankfurt,211,8.08
-162.159.128.81,443,443,true,FRA 162.159.128.81,Europe,Frankfurt,211,8.08
-172.67.7.107,443,443,true,FRA 172.67.7.107,Europe,Frankfurt,214,8.08
+104.16.228.213,443,443,true,US SJC 104.16.228.213,North America,San Jose,194,8
+104.26.10.41,443,443,true,US SEA 104.26.10.41,North America,Seattle,193,8
+104.26.9.129,443,443,true,US SEA 104.26.9.129,North America,Seattle,194,8
+104.18.124.61,443,443,true,FRA 104.18.124.61,Europe,Frankfurt,225,8
+104.19.239.121,443,443,true,FRA 104.19.239.121,Europe,Frankfurt,225,8
+104.20.49.182,443,443,true,FRA 104.20.49.182,Europe,Frankfurt,225,8
