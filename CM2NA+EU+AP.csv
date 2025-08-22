@@ -1,7 +1,0 @@
-IP地址,端口,回源端口,TLS,数据中心,地区,城市,TCP延迟(ms),速度(MB/s)
-104.16.228.213,443,443,true,US SJC 104.16.228.213,North America,San Jose,194,8
-104.26.10.41,443,443,true,US SEA 104.26.10.41,North America,Seattle,193,8
-104.26.9.129,443,443,true,US SEA 104.26.9.129,North America,Seattle,194,8
-104.18.124.61,443,443,true,FRA 104.18.124.61,Europe,Frankfurt,225,8
-104.19.239.121,443,443,true,FRA 104.19.239.121,Europe,Frankfurt,225,8
-104.20.49.182,443,443,true,FRA 104.20.49.182,Europe,Frankfurt,225,8
