@@ -1,0 +1,101 @@
+#EXTM3U x-tvg-url="https://epg.112114.xyz/pp.xml"
+#EXTINF:-1 tvg-name="辽宁电信IPTV直播源" tvg-logo="https://epg.112114.xyz/logo/辽宁电信IPTV直播源.png" epg-url="https://epg.112114.xyz/pp.xml",辽宁电信IPTV直播源
+undefined
+#EXTINF:-1 tvg-name="CCTV-1 综合频道高清" tvg-logo="https://epg.112114.xyz/logo/CCTV-1 综合频道高清.png" epg-url="https://epg.112114.xyz/pp.xml",CCTV-1 综合频道高清
+udp/239.33.1.2:22580
+#EXTINF:-1 tvg-name="辽宁卫视高清" tvg-logo="https://epg.112114.xyz/logo/辽宁卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",辽宁卫视高清
+udp/239.33.1.1:22570
+#EXTINF:-1 tvg-name="CCTV-2 财经频道高清" tvg-logo="https://epg.112114.xyz/logo/CCTV-2 财经频道高清.png" epg-url="https://epg.112114.xyz/pp.xml",CCTV-2 财经频道高清
+udp/239.33.1.3:22590
+#EXTINF:-1 tvg-name="CCTV-4 国际频道高清" tvg-logo="https://epg.112114.xyz/logo/CCTV-4 国际频道高清.png" epg-url="https://epg.112114.xyz/pp.xml",CCTV-4 国际频道高清
+udp/239.33.1.40:22960
+#EXTINF:-1 tvg-name="CCTV-7 农业军事频道高清" tvg-logo="https://epg.112114.xyz/logo/CCTV-7 农业军事频道高清.png" epg-url="https://epg.112114.xyz/pp.xml",CCTV-7 农业军事频道高清
+udp/239.33.1.8:22640
+#EXTINF:-1 tvg-name="CCTV-9 纪录频道高清" tvg-logo="https://epg.112114.xyz/logo/CCTV-9 纪录频道高清.png" epg-url="https://epg.112114.xyz/pp.xml",CCTV-9 纪录频道高清
+udp/239.33.1.10:22660
+#EXTINF:-1 tvg-name="CCTV-10 科教频道高清" tvg-logo="https://epg.112114.xyz/logo/CCTV-10 科教频道高清.png" epg-url="https://epg.112114.xyz/pp.xml",CCTV-10 科教频道高清
+udp/239.33.1.11:22670
+#EXTINF:-1 tvg-name="CCTV-12 社会与法频道高清" tvg-logo="https://epg.112114.xyz/logo/CCTV-12 社会与法频道高清.png" epg-url="https://epg.112114.xyz/pp.xml",CCTV-12 社会与法频道高清
+udp/239.33.1.12:22680
+#EXTINF:-1 tvg-name="CCTV-14 少儿频道高清" tvg-logo="https://epg.112114.xyz/logo/CCTV-14 少儿频道高清.png" epg-url="https://epg.112114.xyz/pp.xml",CCTV-14 少儿频道高清
+udp/239.33.1.13:22690
+#EXTINF:-1 tvg-name="CCTV 5+" tvg-logo="https://epg.112114.xyz/logo/CCTV 5+.png" epg-url="https://epg.112114.xyz/pp.xml",CCTV 5+
+udp/239.33.1.6:22620
+#EXTINF:-1 tvg-name="CGTN纪录高清" tvg-logo="https://epg.112114.xyz/logo/CGTN纪录高清.png" epg-url="https://epg.112114.xyz/pp.xml",CGTN纪录高清
+udp/239.33.1.44:23000
+#EXTINF:-1 tvg-name="CGTN NEWS高清" tvg-logo="https://epg.112114.xyz/logo/CGTN NEWS高清.png" epg-url="https://epg.112114.xyz/pp.xml",CGTN NEWS高清
+udp/239.33.1.43:22900
+#EXTINF:-1 tvg-name="黑龙江卫视高清" tvg-logo="https://epg.112114.xyz/logo/黑龙江卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",黑龙江卫视高清
+udp/239.33.1.14:22700
+#EXTINF:-1 tvg-name="湖南卫视高清" tvg-logo="https://epg.112114.xyz/logo/湖南卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",湖南卫视高清
+udp/239.33.1.15:22710
+#EXTINF:-1 tvg-name="安徽卫视高清" tvg-logo="https://epg.112114.xyz/logo/安徽卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",安徽卫视高清
+udp/239.33.1.16:22720
+#EXTINF:-1 tvg-name="湖北卫视高清" tvg-logo="https://epg.112114.xyz/logo/湖北卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",湖北卫视高清
+udp/239.33.1.17:22730
+#EXTINF:-1 tvg-name="山东卫视高清" tvg-logo="https://epg.112114.xyz/logo/山东卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",山东卫视高清
+udp/239.33.1.18:22740
+#EXTINF:-1 tvg-name="广东卫视高清" tvg-logo="https://epg.112114.xyz/logo/广东卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",广东卫视高清
+udp/239.33.1.19:22750
+#EXTINF:-1 tvg-name="深圳卫视高清" tvg-logo="https://epg.112114.xyz/logo/深圳卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",深圳卫视高清
+udp/239.33.1.20:22760
+#EXTINF:-1 tvg-name="北京卫视高清" tvg-logo="https://epg.112114.xyz/logo/北京卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",北京卫视高清
+udp/239.33.1.21:22770
+#EXTINF:-1 tvg-name="天津卫视高清" tvg-logo="https://epg.112114.xyz/logo/天津卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",天津卫视高清
+udp/239.33.1.22:22780
+#EXTINF:-1 tvg-name="浙江卫视高清" tvg-logo="https://epg.112114.xyz/logo/浙江卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",浙江卫视高清
+udp/239.33.1.51:23070
+#EXTINF:-1 tvg-name="家有购物重播" tvg-logo="https://epg.112114.xyz/logo/家有购物重播.png" epg-url="https://epg.112114.xyz/pp.xml",家有购物重播
+udp/239.33.1.49:23050
+#EXTINF:-1 tvg-name="东方卫视高清" tvg-logo="https://epg.112114.xyz/logo/东方卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",东方卫视高清
+udp/239.33.1.24:22800
+#EXTINF:-1 tvg-name="四川卫视高清" tvg-logo="https://epg.112114.xyz/logo/四川卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",四川卫视高清
+udp/239.33.1.42:22980
+#EXTINF:-1 tvg-name="重庆卫视高清" tvg-logo="https://epg.112114.xyz/logo/重庆卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",重庆卫视高清
+udp/239.33.1.41:22970
+#EXTINF:-1 tvg-name="江苏卫视高清" tvg-logo="https://epg.112114.xyz/logo/江苏卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",江苏卫视高清
+udp/239.33.1.52:23080
+#EXTINF:-1 tvg-name="福建东南卫视高清" tvg-logo="https://epg.112114.xyz/logo/福建东南卫视高清.png" epg-url="https://epg.112114.xyz/pp.xml",福建东南卫视高清
+udp/239.33.1.55:23110
+#EXTINF:-1 tvg-name="中国教育1高清" tvg-logo="https://epg.112114.xyz/logo/中国教育1高清.png" epg-url="https://epg.112114.xyz/pp.xml",中国教育1高清
+udp/239.33.1.45:23010
+#EXTINF:-1 tvg-name="北京纪实高清" tvg-logo="https://epg.112114.xyz/logo/北京纪实高清.png" epg-url="https://epg.112114.xyz/pp.xml",北京纪实高清
+udp/239.33.1.25:22810
+#EXTINF:-1 tvg-name="金鹰纪实高清" tvg-logo="https://epg.112114.xyz/logo/金鹰纪实高清.png" epg-url="https://epg.112114.xyz/pp.xml",金鹰纪实高清
+udp/239.33.1.26:22820
+#EXTINF:-1 tvg-name="时光剧场高清" tvg-logo="https://epg.112114.xyz/logo/时光剧场高清.png" epg-url="https://epg.112114.xyz/pp.xml",时光剧场高清
+udp/239.33.1.48:23040
+#EXTINF:-1 tvg-name="爱映画高清" tvg-logo="https://epg.112114.xyz/logo/爱映画高清.png" epg-url="https://epg.112114.xyz/pp.xml",爱映画高清
+udp/239.33.1.46:23020
+#EXTINF:-1 tvg-name="晴天动画馆高清" tvg-logo="https://epg.112114.xyz/logo/晴天动画馆高清.png" epg-url="https://epg.112114.xyz/pp.xml",晴天动画馆高清
+udp/239.33.1.47:23030
+#EXTINF:-1 tvg-name="大众影视高清" tvg-logo="https://epg.112114.xyz/logo/大众影视高清.png" epg-url="https://epg.112114.xyz/pp.xml",大众影视高清
+udp/239.33.1.27:22830
+#EXTINF:-1 tvg-name="家庭影院高清" tvg-logo="https://epg.112114.xyz/logo/家庭影院高清.png" epg-url="https://epg.112114.xyz/pp.xml",家庭影院高清
+udp/239.33.1.29:22850
+#EXTINF:-1 tvg-name="家庭剧场高清" tvg-logo="https://epg.112114.xyz/logo/家庭剧场高清.png" epg-url="https://epg.112114.xyz/pp.xml",家庭剧场高清
+udp/239.33.1.28:22840
+#EXTINF:-1 tvg-name="卡通剧场高清" tvg-logo="https://epg.112114.xyz/logo/卡通剧场高清.png" epg-url="https://epg.112114.xyz/pp.xml",卡通剧场高清
+udp/239.33.1.30:22860
+#EXTINF:-1 tvg-name="辽宁卫视" tvg-logo="https://epg.112114.xyz/logo/辽宁卫视.png" epg-url="https://epg.112114.xyz/pp.xml",辽宁卫视
+udp/239.33.0.16:20160
+#EXTINF:-1 tvg-name="辽宁都市频道" tvg-logo="https://epg.112114.xyz/logo/辽宁都市频道.png" epg-url="https://epg.112114.xyz/pp.xml",辽宁都市频道
+udp/239.33.0.17:20170
+#EXTINF:-1 tvg-name="辽宁影视剧频道" tvg-logo="https://epg.112114.xyz/logo/辽宁影视剧频道.png" epg-url="https://epg.112114.xyz/pp.xml",辽宁影视剧频道
+udp/239.33.0.18:20180
+#EXTINF:-1 tvg-name="辽宁体育频道" tvg-logo="https://epg.112114.xyz/logo/辽宁体育频道.png" epg-url="https://epg.112114.xyz/pp.xml",辽宁体育频道
+udp/239.33.0.19:20190
+#EXTINF:-1 tvg-name="辽宁生活频道" tvg-logo="https://epg.112114.xyz/logo/辽宁生活频道.png" epg-url="https://epg.112114.xyz/pp.xml",辽宁生活频道
+udp/239.33.0.20:20200
+#EXTINF:-1 tvg-name="辽宁教育青少频道" tvg-logo="https://epg.112114.xyz/logo/辽宁教育青少频道.png" epg-url="https://epg.112114.xyz/pp.xml",辽宁教育青少频道
+udp/239.33.0.21:20210
+#EXTINF:-1 tvg-name="辽宁北方频道" tvg-logo="https://epg.112114.xyz/logo/辽宁北方频道.png" epg-url="https://epg.112114.xyz/pp.xml",辽宁北方频道
+udp/239.33.0.22:20220
+#EXTINF:-1 tvg-name="辽宁宜佳购物频道" tvg-logo="https://epg.112114.xyz/logo/辽宁宜佳购物频道.png" epg-url="https://epg.112114.xyz/pp.xml",辽宁宜佳购物频道
+udp/239.33.0.23:20230
+#EXTINF:-1 tvg-name="移动电视频道" tvg-logo="https://epg.112114.xyz/logo/移动电视频道.png" epg-url="https://epg.112114.xyz/pp.xml",移动电视频道
+udp/239.33.0.25:20250
+#EXTINF:-1 tvg-name="辽宁经济频道" tvg-logo="https://epg.112114.xyz/logo/辽宁经济频道.png" epg-url="https://epg.112114.xyz/pp.xml",辽宁经济频道
+udp/239.33.0.121:21210
+#EXTINF:-1 tvg-name="辽宁公共频道" tvg-logo="https://epg.112114.xyz/logo/辽宁公共频道.png" epg-url="https://epg.112114.xyz/pp.xml",辽宁公共频道
+udp/239.33.0.122:21220
