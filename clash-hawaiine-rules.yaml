@@ -1,0 +1,407 @@
+# ============================================================
+# Clash / Mihomo 规则库（Hawaiine/mihomo-rules）
+# 来源：https://github.com/Hawaiine/mihomo-rules
+#   156 品牌 · 165 规则集，每日 06:00（北京时间）从
+#   v2fly / Loyalsoldier / blackmatrix7 三个上游自动同步
+#
+# 这是“规则库”文件：只有 rule-providers + rules 两段，
+# 给 iOS Clash App 的 配置中心 → 规则库 → 添加规则 用
+# （导入文件，或用下面公开链接走 URL 导入）。
+#
+# 它引用的策略组名必须在你用的配置里存在：
+#   🚀 节点选择、🤖 AI 服务 —— 你现在的 clash-region.yaml
+#   里本来就有这两个组，所以这个规则库可以直接挂在那份
+#   配置上用；DIRECT、REJECT 是 Clash 内置策略，不用定义。
+#
+# 分流逻辑（按 Hawaiine 项目的规则匹配顺序）：
+#   1. Reject（广告/追踪）→ 拦截
+#   2. AI 类（OpenAI/Claude/Gemini/Copilot 等）→ 🤖 AI 服务（默认美国节点）
+#      注意：Hawaiine 没有单独的 Gemini 集，Gemini 在 GoogleAI 集里
+#      （gemini.google.com、aistudio.google.com 等都在内）
+#   3. 国内品牌（B站、爱奇艺、微信、QQ 等）→ DIRECT
+#   4. 海外品牌（YouTube、Netflix、Telegram 等）→ 🚀 节点选择
+#   5. 直连类：Applications / LanCIDR / Private / Direct（国内域名）
+#      / CNCIDR + GEOIP,CN（国内 IP）→ DIRECT
+#   6. 兜底 MATCH → 🚀 节点选择
+#
+# 规则集每天自动更新（interval: 86400），不用手动维护。
+# 想加别的品牌：按同样格式加一段 provider 即可，
+#   url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/<品牌>/<品牌>.yaml"
+#   品牌名见项目 README 的品牌分类表，如 Disney、HBO、Twitch、AppleMusic、Cursor、Poe、Doubao 等。
+#
+# 体积提醒：Reject（广告，约 19 万条）和 Direct（国内域名，约 11 万条）
+#   是最大的两个集，首次启动下载需要一点时间；如果 iOS 端感觉卡顿
+#   或自动断开，先删 Reject 这一组 provider 和它对应的规则行。
+# ============================================================
+
+rule-providers:
+  # ---------- 基础规则集（7 个）----------
+  Reject:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Reject/Reject.yaml"
+    path: ./ruleset/Reject.yaml
+    interval: 86400
+
+  Direct:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Direct/Direct.yaml"
+    path: ./ruleset/Direct.yaml
+    interval: 86400
+
+  CNCIDR:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/CNCIDR/CNCIDR.yaml"
+    path: ./ruleset/CNCIDR.yaml
+    interval: 86400
+
+  Private:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Private/Private.yaml"
+    path: ./ruleset/Private.yaml
+    interval: 86400
+
+  LanCIDR:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/LanCIDR/LanCIDR.yaml"
+    path: ./ruleset/LanCIDR.yaml
+    interval: 86400
+
+  Applications:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Applications/Applications.yaml"
+    path: ./ruleset/Applications.yaml
+    interval: 86400
+
+  # ---------- AI 类（8 个）→ 🤖 AI 服务 ----------
+  OpenAI:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/OpenAI/OpenAI.yaml"
+    path: ./ruleset/OpenAI.yaml
+    interval: 86400
+
+  Anthropic:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Anthropic/Anthropic.yaml"
+    path: ./ruleset/Anthropic.yaml
+    interval: 86400
+
+  GoogleAI:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/GoogleAI/GoogleAI.yaml"
+    path: ./ruleset/GoogleAI.yaml
+    interval: 86400
+
+  Copilot:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Copilot/Copilot.yaml"
+    path: ./ruleset/Copilot.yaml
+    interval: 86400
+
+  GeneralAI:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/GeneralAI/GeneralAI.yaml"
+    path: ./ruleset/GeneralAI.yaml
+    interval: 86400
+
+  DeepSeek:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/DeepSeek/DeepSeek.yaml"
+    path: ./ruleset/DeepSeek.yaml
+    interval: 86400
+
+  Perplexity:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Perplexity/Perplexity.yaml"
+    path: ./ruleset/Perplexity.yaml
+    interval: 86400
+
+  Grok:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Grok/Grok.yaml"
+    path: ./ruleset/Grok.yaml
+    interval: 86400
+
+  # ---------- 国内品牌（12 个）→ DIRECT ----------
+  bilibili:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/bilibili/bilibili.yaml"
+    path: ./ruleset/bilibili.yaml
+    interval: 86400
+
+  iQIYI:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/iQIYI/iQIYI.yaml"
+    path: ./ruleset/iQIYI.yaml
+    interval: 86400
+
+  TencentVideo:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/TencentVideo/TencentVideo.yaml"
+    path: ./ruleset/TencentVideo.yaml
+    interval: 86400
+
+  Youku:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Youku/Youku.yaml"
+    path: ./ruleset/Youku.yaml
+    interval: 86400
+
+  MangoTV:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/MangoTV/MangoTV.yaml"
+    path: ./ruleset/MangoTV.yaml
+    interval: 86400
+
+  Weibo:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Weibo/Weibo.yaml"
+    path: ./ruleset/Weibo.yaml
+    interval: 86400
+
+  WeChat:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/WeChat/WeChat.yaml"
+    path: ./ruleset/WeChat.yaml
+    interval: 86400
+
+  QQ:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/QQ/QQ.yaml"
+    path: ./ruleset/QQ.yaml
+    interval: 86400
+
+  NetEaseCloudMusic:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/NetEaseCloudMusic/NetEaseCloudMusic.yaml"
+    path: ./ruleset/NetEaseCloudMusic.yaml
+    interval: 86400
+
+  QQMusic:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/QQMusic/QQMusic.yaml"
+    path: ./ruleset/QQMusic.yaml
+    interval: 86400
+
+  Douyin:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Douyin/Douyin.yaml"
+    path: ./ruleset/Douyin.yaml
+    interval: 86400
+
+  rednote:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/rednote/rednote.yaml"
+    path: ./ruleset/rednote.yaml
+    interval: 86400
+
+  # ---------- 海外品牌（17 个）→ 🚀 节点选择 ----------
+  YouTube:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/YouTube/YouTube.yaml"
+    path: ./ruleset/YouTube.yaml
+    interval: 86400
+
+  YouTubeMusic:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/YouTubeMusic/YouTubeMusic.yaml"
+    path: ./ruleset/YouTubeMusic.yaml
+    interval: 86400
+
+  Netflix:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Netflix/Netflix.yaml"
+    path: ./ruleset/Netflix.yaml
+    interval: 86400
+
+  DisneyPlus:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/DisneyPlus/DisneyPlus.yaml"
+    path: ./ruleset/DisneyPlus.yaml
+    interval: 86400
+
+  PrimeVideo:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/PrimeVideo/PrimeVideo.yaml"
+    path: ./ruleset/PrimeVideo.yaml
+    interval: 86400
+
+  Spotify:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Spotify/Spotify.yaml"
+    path: ./ruleset/Spotify.yaml
+    interval: 86400
+
+  Telegram:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Telegram/Telegram.yaml"
+    path: ./ruleset/Telegram.yaml
+    interval: 86400
+
+  X:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/X/X.yaml"
+    path: ./ruleset/X.yaml
+    interval: 86400
+
+  Instagram:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Instagram/Instagram.yaml"
+    path: ./ruleset/Instagram.yaml
+    interval: 86400
+
+  Facebook:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Facebook/Facebook.yaml"
+    path: ./ruleset/Facebook.yaml
+    interval: 86400
+
+  WhatsApp:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/WhatsApp/WhatsApp.yaml"
+    path: ./ruleset/WhatsApp.yaml
+    interval: 86400
+
+  Discord:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Discord/Discord.yaml"
+    path: ./ruleset/Discord.yaml
+    interval: 86400
+
+  Reddit:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Reddit/Reddit.yaml"
+    path: ./ruleset/Reddit.yaml
+    interval: 86400
+
+  TikTok:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/TikTok/TikTok.yaml"
+    path: ./ruleset/TikTok.yaml
+    interval: 86400
+
+  Threads:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Threads/Threads.yaml"
+    path: ./ruleset/Threads.yaml
+    interval: 86400
+
+  GitHub:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/GitHub/GitHub.yaml"
+    path: ./ruleset/GitHub.yaml
+    interval: 86400
+
+  Steam:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Steam/Steam.yaml"
+    path: ./ruleset/Steam.yaml
+    interval: 86400
+
+rules:
+  # 1. 广告 / 追踪拦截
+  - RULE-SET,Reject,REJECT
+
+  # 2. AI 类 → 🤖 AI 服务（默认美国节点）
+  #    Gemini 在 GoogleAI 集里（gemini.google.com、aistudio.google.com 等）
+  - RULE-SET,OpenAI,🤖 AI 服务
+  - RULE-SET,Anthropic,🤖 AI 服务
+  - RULE-SET,GoogleAI,🤖 AI 服务
+  - RULE-SET,Copilot,🤖 AI 服务
+  - RULE-SET,GeneralAI,🤖 AI 服务
+  - RULE-SET,DeepSeek,🤖 AI 服务
+  - RULE-SET,Perplexity,🤖 AI 服务
+  - RULE-SET,Grok,🤖 AI 服务
+
+  # 3. 国内品牌 → 直连
+  - RULE-SET,bilibili,DIRECT
+  - RULE-SET,iQIYI,DIRECT
+  - RULE-SET,TencentVideo,DIRECT
+  - RULE-SET,Youku,DIRECT
+  - RULE-SET,MangoTV,DIRECT
+  - RULE-SET,Weibo,DIRECT
+  - RULE-SET,WeChat,DIRECT
+  - RULE-SET,QQ,DIRECT
+  - RULE-SET,NetEaseCloudMusic,DIRECT
+  - RULE-SET,QQMusic,DIRECT
+  - RULE-SET,Douyin,DIRECT
+  - RULE-SET,rednote,DIRECT
+
+  # 4. 海外品牌 → 🚀 节点选择
+  - RULE-SET,YouTube,🚀 节点选择
+  - RULE-SET,YouTubeMusic,🚀 节点选择
+  - RULE-SET,Netflix,🚀 节点选择
+  - RULE-SET,DisneyPlus,🚀 节点选择
+  - RULE-SET,PrimeVideo,🚀 节点选择
+  - RULE-SET,Spotify,🚀 节点选择
+  - RULE-SET,Telegram,🚀 节点选择
+  - RULE-SET,X,🚀 节点选择
+  - RULE-SET,Instagram,🚀 节点选择
+  - RULE-SET,Facebook,🚀 节点选择
+  - RULE-SET,WhatsApp,🚀 节点选择
+  - RULE-SET,Discord,🚀 节点选择
+  - RULE-SET,Reddit,🚀 节点选择
+  - RULE-SET,TikTok,🚀 节点选择
+  - RULE-SET,Threads,🚀 节点选择
+  - RULE-SET,GitHub,🚀 节点选择
+  - RULE-SET,Steam,🚀 节点选择
+
+  # 5. 下载 / 代理类进程 → 直连（iOS 上 PROCESS-NAME 规则一般不生效，可忽略）
+  - RULE-SET,Applications,DIRECT
+
+  # 6. 局域网 / 私有地址 → 直连
+  - RULE-SET,LanCIDR,DIRECT,no-resolve
+  - RULE-SET,Private,DIRECT,no-resolve
+
+  # 7. 国内域名 → 直连
+  - RULE-SET,Direct,DIRECT
+
+  # 8. 国内 IP → 直连
+  - RULE-SET,CNCIDR,DIRECT,no-resolve
+  - GEOIP,CN,DIRECT,no-resolve
+  - GEOIP,PRIVATE,DIRECT,no-resolve
+
+  # 9. 兜底 → 🚀 节点选择
+  - MATCH,🚀 节点选择
