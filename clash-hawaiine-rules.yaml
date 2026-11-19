@@ -15,14 +15,17 @@
 #
 # 分流逻辑（按 Hawaiine 项目的规则匹配顺序）：
 #   1. Reject（广告/追踪）→ 拦截
-#   2. AI 类（OpenAI/Claude/Gemini/Copilot 等）→ 🤖 AI 服务（默认美国节点）
+#   2. 国内 AI（DeepSeek、MiniMax、Qoder）→ DIRECT
+#   3. 国外 AI（OpenAI/Claude/Gemini/Copilot 等）→ 🤖 AI 服务（默认美国节点）
 #      注意：Hawaiine 没有单独的 Gemini 集，Gemini 在 GoogleAI 集里
 #      （gemini.google.com、aistudio.google.com 等都在内）
-#   3. 国内品牌（B站、爱奇艺、微信、QQ 等）→ DIRECT
-#   4. 海外品牌（YouTube、Netflix、Telegram 等）→ 🚀 节点选择
-#   5. 直连类：Applications / LanCIDR / Private / Direct（国内域名）
+#   4. 国内品牌（B站、爱奇艺、微信、QQ 等）→ DIRECT
+#   5. 海外品牌（YouTube、Netflix、Telegram 等）→ 🚀 节点选择
+#      其中 GitHub → 🐙 GitHub、Cloudflare → ☁️ Cloudflare、Google → 🔍 Google、Apple → 🍎 Apple；Apple 系统升级、软件更新 → 🍏 Apple 更新
+#      金融：美国运通所有地区 → DIRECT；汇丰各地走各地（香港/中国/新加坡/英国/美国）
+#   6. 直连类：Applications / LanCIDR / Private / Direct（国内域名）
 #      / CNCIDR + GEOIP,CN（国内 IP）→ DIRECT
-#   6. 兜底 MATCH → 🚀 节点选择
+#   7. 兜底 MATCH → 🚀 节点选择
 #
 # 规则集每天自动更新（interval: 86400），不用手动维护。
 # 想加别的品牌：按同样格式加一段 provider 即可，
@@ -333,6 +336,27 @@ rule-providers:
     path: ./ruleset/GitHub.yaml
     interval: 86400
 
+  Apple:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Apple/Apple.yaml"
+    path: ./ruleset/Apple.yaml
+    interval: 86400
+
+  Google:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Google/Google.yaml"
+    path: ./ruleset/Google.yaml
+    interval: 86400
+
+  Cloudflare:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Cloudflare/Cloudflare.yaml"
+    path: ./ruleset/Cloudflare.yaml
+    interval: 86400
+
   Steam:
     type: http
     behavior: classical
@@ -344,14 +368,20 @@ rules:
   # 1. 广告 / 追踪拦截
   - RULE-SET,Reject,REJECT
 
-  # 2. AI 类 → 🤖 AI 服务（默认美国节点）
-  #    Gemini 在 GoogleAI 集里（gemini.google.com、aistudio.google.com 等）
+  # 2a. 国内 AI → DIRECT
+  - RULE-SET,DeepSeek,DIRECT
+  #     MiniMax、Qoder 在 GeneralAI 集里，先用单条规则截到 DIRECT，
+  #     必须放在 GeneralAI 这条前面（规则按顺序命中）
+  - DOMAIN-SUFFIX,minimax.io,DIRECT
+  - DOMAIN-SUFFIX,qoder.com,DIRECT
+
+  # 2b. 国外 AI → 🤖 AI 服务（默认美国节点）
+  #     Gemini 在 GoogleAI 集里（gemini.google.com、aistudio.google.com 等）
   - RULE-SET,OpenAI,🤖 AI 服务
   - RULE-SET,Anthropic,🤖 AI 服务
   - RULE-SET,GoogleAI,🤖 AI 服务
   - RULE-SET,Copilot,🤖 AI 服务
   - RULE-SET,GeneralAI,🤖 AI 服务
-  - RULE-SET,DeepSeek,🤖 AI 服务
   - RULE-SET,Perplexity,🤖 AI 服务
   - RULE-SET,Grok,🤖 AI 服务
 
@@ -369,7 +399,7 @@ rules:
   - RULE-SET,Douyin,DIRECT
   - RULE-SET,rednote,DIRECT
 
-  # 4. 海外品牌 → 🚀 节点选择
+  # 4. 海外品牌 → 🚀 节点选择（GitHub / Cloudflare / Google / Apple 各自单独分组，Apple 系统升级、软件更新另进 🍏 Apple 更新）
   - RULE-SET,YouTube,🚀 节点选择
   - RULE-SET,YouTubeMusic,🚀 节点选择
   - RULE-SET,Netflix,🚀 节点选择
@@ -385,7 +415,33 @@ rules:
   - RULE-SET,Reddit,🚀 节点选择
   - RULE-SET,TikTok,🚀 节点选择
   - RULE-SET,Threads,🚀 节点选择
-  - RULE-SET,GitHub,🚀 节点选择
+  - RULE-SET,GitHub,🐙 GitHub
+  # Apple 系统升级 / 软件更新单独一组（必须放在 Apple 集前面，规则按顺序命中）
+  - DOMAIN-SUFFIX,mesu.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,appldnld.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,swcdn.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,swdist.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,oscdn.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,swscan.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,gdmf.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,updates.cdn-apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,updates-http.cdn-apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,iosapps.itunes.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,mzstatic.com,🍏 Apple 更新
+  - RULE-SET,Apple,🍎 Apple
+  - RULE-SET,Google,🔍 Google
+  - RULE-SET,Cloudflare,☁️ Cloudflare
+  # 金融：美国运通所有地区都直连，汇丰各地走各地
+  - DOMAIN-KEYWORD,americanexpress,DIRECT
+  - DOMAIN-SUFFIX,amex.com,DIRECT
+  - DOMAIN-SUFFIX,aexp-static.com,DIRECT
+  - DOMAIN-SUFFIX,hsbc.com.hk,🇭🇰 香港自动
+  - DOMAIN-SUFFIX,hsbc.com.cn,DIRECT
+  - DOMAIN-SUFFIX,hsbc.com.sg,🇸🇬 新加坡自动
+  - DOMAIN-SUFFIX,hsbc.co.uk,🌐 其他地区自动
+  - DOMAIN-SUFFIX,us.hsbc.com,🇺🇸 美国自动
+  - DOMAIN-SUFFIX,hsbc.com,🇭🇰 香港自动
+  - DOMAIN-SUFFIX,hsbcnet.com,🇭🇰 香港自动
   - RULE-SET,Steam,🚀 节点选择
 
   # 5. 下载 / 代理类进程 → 直连（iOS 上 PROCESS-NAME 规则一般不生效，可忽略）
