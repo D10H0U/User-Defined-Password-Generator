@@ -177,6 +177,54 @@ proxy-groups:
       - "🇸🇬 新加坡节点"
       - "🚀 节点选择"
 
+  # GitHub / Cloudflare / Google / Apple 专用组：默认节点见各组首位，可在客户端里手动切换
+  - name: "🐙 GitHub"
+    type: select
+    proxies:
+      - "🇺🇸 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇯🇵 日本节点"
+      - "🇸🇬 新加坡节点"
+      - "🚀 节点选择"
+
+  - name: "☁️ Cloudflare"
+    type: select
+    proxies:
+      - "🇭🇰 香港节点"
+      - "🇺🇸 美国节点"
+      - "🇯🇵 日本节点"
+      - "🇸🇬 新加坡节点"
+      - "🚀 节点选择"
+
+  - name: "🔍 Google"
+    type: select
+    proxies:
+      - "🇺🇸 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇯🇵 日本节点"
+      - "🇸🇬 新加坡节点"
+      - "🚀 节点选择"
+
+  - name: "🍎 Apple"
+    type: select
+    proxies:
+      - "🇭🇰 香港节点"
+      - "🇺🇸 美国节点"
+      - "🇯🇵 日本节点"
+      - "🇸🇬 新加坡节点"
+      - "🚀 节点选择"
+
+  # Apple 系统升级 / 软件更新单独一组；DIRECT 可选（大陆有 Apple 更新 CDN，直连可能更快）
+  - name: "🍏 Apple 更新"
+    type: select
+    proxies:
+      - "🇭🇰 香港节点"
+      - "🇺🇸 美国节点"
+      - "🇯🇵 日本节点"
+      - "🇸🇬 新加坡节点"
+      - "🚀 节点选择"
+      - DIRECT
+
   # 兜底组：MATCH 命中后落到这里，默认走总开关
   - name: "🐟 漏网之鱼"
     type: select
@@ -489,6 +537,27 @@ rule-providers:
     path: ./ruleset/GitHub.yaml
     interval: 86400
 
+  Apple:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Apple/Apple.yaml"
+    path: ./ruleset/Apple.yaml
+    interval: 86400
+
+  Google:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Google/Google.yaml"
+    path: ./ruleset/Google.yaml
+    interval: 86400
+
+  Cloudflare:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Hawaiine/mihomo-rules/main/ruleset/Cloudflare/Cloudflare.yaml"
+    path: ./ruleset/Cloudflare.yaml
+    interval: 86400
+
   Steam:
     type: http
     behavior: classical
@@ -502,14 +571,20 @@ rules:
   # 1. 广告 / 追踪拦截
   - RULE-SET,Reject,REJECT
 
-  # 2. AI 类 → 🤖 AI 服务（默认美国节点）
-  #    Gemini 在 GoogleAI 集里（gemini.google.com、aistudio.google.com 等）
+  # 2a. 国内 AI → DIRECT
+  - RULE-SET,DeepSeek,DIRECT
+  #     MiniMax、Qoder 在 GeneralAI 集里，先用单条规则截到 DIRECT，
+  #     必须放在 GeneralAI 这条前面（规则按顺序命中）
+  - DOMAIN-SUFFIX,minimax.io,DIRECT
+  - DOMAIN-SUFFIX,qoder.com,DIRECT
+
+  # 2b. 国外 AI → 🤖 AI 服务（默认美国节点）
+  #     Gemini 在 GoogleAI 集里（gemini.google.com、aistudio.google.com 等）
   - RULE-SET,OpenAI,🤖 AI 服务
   - RULE-SET,Anthropic,🤖 AI 服务
   - RULE-SET,GoogleAI,🤖 AI 服务
   - RULE-SET,Copilot,🤖 AI 服务
   - RULE-SET,GeneralAI,🤖 AI 服务
-  - RULE-SET,DeepSeek,🤖 AI 服务
   - RULE-SET,Perplexity,🤖 AI 服务
   - RULE-SET,Grok,🤖 AI 服务
 
@@ -527,7 +602,7 @@ rules:
   - RULE-SET,Douyin,DIRECT
   - RULE-SET,rednote,DIRECT
 
-  # 4. 海外品牌 → 🚀 节点选择
+  # 4. 海外品牌 → 🚀 节点选择（GitHub / Cloudflare / Google / Apple 各自单独分组，Apple 系统升级、软件更新另进 🍏 Apple 更新）
   - RULE-SET,YouTube,🚀 节点选择
   - RULE-SET,YouTubeMusic,🚀 节点选择
   - RULE-SET,Netflix,🚀 节点选择
@@ -543,7 +618,34 @@ rules:
   - RULE-SET,Reddit,🚀 节点选择
   - RULE-SET,TikTok,🚀 节点选择
   - RULE-SET,Threads,🚀 节点选择
-  - RULE-SET,GitHub,🚀 节点选择
+  - RULE-SET,GitHub,🐙 GitHub
+  # Apple 系统升级 / 软件更新单独一组（必须放在 Apple 集前面，规则按顺序命中）
+  - DOMAIN-SUFFIX,mesu.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,appldnld.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,swcdn.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,swdist.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,oscdn.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,swscan.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,gdmf.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,updates.cdn-apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,updates-http.cdn-apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,iosapps.itunes.apple.com,🍏 Apple 更新
+  - DOMAIN-SUFFIX,mzstatic.com,🍏 Apple 更新
+  - RULE-SET,Apple,🍎 Apple
+  - RULE-SET,Google,🔍 Google
+  - RULE-SET,Cloudflare,☁️ Cloudflare
+  # 金融：美国运通所有地区都直连，汇丰各地走各地
+  # （完整版的地区组名与规则库文件不同：香港节点/新加坡节点/英国节点/美国节点，对应规则库文件的香港自动/新加坡自动/其他地区自动/美国自动）
+  - DOMAIN-KEYWORD,americanexpress,DIRECT
+  - DOMAIN-SUFFIX,amex.com,DIRECT
+  - DOMAIN-SUFFIX,aexp-static.com,DIRECT
+  - DOMAIN-SUFFIX,hsbc.com.hk,🇭🇰 香港节点
+  - DOMAIN-SUFFIX,hsbc.com.cn,DIRECT
+  - DOMAIN-SUFFIX,hsbc.com.sg,🇸🇬 新加坡节点
+  - DOMAIN-SUFFIX,hsbc.co.uk,🇬🇧 英国节点
+  - DOMAIN-SUFFIX,us.hsbc.com,🇺🇸 美国节点
+  - DOMAIN-SUFFIX,hsbc.com,🇭🇰 香港节点
+  - DOMAIN-SUFFIX,hsbcnet.com,🇭🇰 香港节点
   - RULE-SET,Steam,🚀 节点选择
 
   # 5. 下载 / 代理类进程 → 直连（iOS 上 PROCESS-NAME 规则一般不生效，可忽略）
